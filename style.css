@@ -1,0 +1,141 @@
+* {
+    margin: 0px;
+    padding: 0px;
+    box-sizing: border-box;
+}
+
+.container {
+    width: 90%;
+    margin: 0px auto;
+    padding: 10px;
+}
+
+.Slideshow {
+    width: 100%;
+    height: 80vh;
+    background-image: url(./img/1.jpg);
+    background-size: cover;
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+
+}
+
+.Slideshow div {
+    width: 100%;
+}
+
+
+/* counter ..............*/
+.counterBox {
+    height: 50px;
+}
+
+.counter {
+    padding: 1.5rem;
+    font-size: 1.5rem;
+    color: white;
+    /* background-color: black; */
+
+}
+
+
+
+
+
+/* aroBox............... */
+.aroBox {
+    /* background-color: brown; */
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    position: relative;
+    top: -10px;
+
+}
+
+.aroBox div {
+    width: 40px;
+    height: 60px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    font-size: 2rem;
+    /* background-color: aquamarine; */
+    padding: 15px 10px;
+    transition: 200ms;
+    cursor: pointer;
+}
+
+.aroBox div:hover {
+    background-color: rgb(0, 0, 0, 0.8);
+    transition: background-color 0.3s, transform 0.2s;
+}
+
+
+.leftArrow {
+    border-radius: 0px 5px 5px 0px;
+}
+
+.arrowRight {
+    border-radius: 5px 0px 0px 5px;
+}
+
+
+
+
+
+
+/* Caption .................... */
+
+.CaptionBox {
+    height: 50px;
+}
+
+.CaptionText {
+    width: 100% !important;
+    height: 100%;
+    margin: 0px auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.3rem;
+    color: white;
+    text-shadow: 3px 3px 8px rgba(0, 0, 0, 0.8);
+    font-weight: 600;
+}
+
+
+
+
+
+/* button ........................ */
+.buttonBox {
+    margin-top: 20px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    gap: 5px;
+}
+
+.buttonBox button {
+    width: 25px;
+    border: none;
+    cursor: pointer;
+    height: 25px;
+    background-color: #bbb;
+    border-radius: 50%;
+    /* transition: 200ms; */
+    transition: background-color 0.3s, transform 0.2s;
+}
+
+.buttonBox button:hover {
+    background-color: #717171;
+    transform: scale(1.1);
+}
+
+.checked {
+    background-color: #717171 !important;
+    transform: scale(1.1);
+}
