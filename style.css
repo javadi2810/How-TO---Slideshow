@@ -45,6 +45,7 @@
 }
 
 .counter {
+    display: none;
     padding: 1.5rem;
     font-size: 1.5rem;
     color: white;
@@ -56,8 +57,8 @@
 
 
 
-/* aroBox............... */
-.aroBox {
+/* arrowBox............... */
+.arrowBox {
     /* background-color: brown; */
     width: 100%;
     display: flex;
@@ -67,7 +68,7 @@
 
 }
 
-.aroBox div {
+.arrowBox div {
     width: 40px;
     height: 60px;
     display: flex;
@@ -81,7 +82,7 @@
     cursor: pointer;
 }
 
-.aroBox div:hover {
+.arrowBox div:hover {
     background-color: rgb(0, 0, 0, 0.8);
     transition: background-color 0.3s, transform 0.2s;
 }
@@ -124,7 +125,7 @@
 
 
 /* button ........................ */
-.buttonBox {
+.buttonSliderBox {
     margin-top: 20px;
     width: 100%;
     display: flex;
@@ -132,7 +133,7 @@
     gap: 5px;
 }
 
-.buttonBox button {
+.buttonSliderBox button {
     width: 25px;
     border: none;
     cursor: pointer;
@@ -143,7 +144,7 @@
     transition: background-color 0.3s, transform 0.2s;
 }
 
-.buttonBox button:hover {
+.buttonSliderBox button:hover {
     background-color: #717171;
     transform: scale(1.1);
 }
