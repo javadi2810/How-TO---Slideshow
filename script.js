@@ -18,9 +18,11 @@ let buttonSliderBox = document.querySelector(".buttonSliderBox");
 let CaptionText=document.querySelector(".CaptionText");
 let x = 0;
 let setval
+let restartval
 
 
 function startVal() {
+    clearInterval(setval)
     setval = setInterval(() => {
         if (x < imgSrc.length - 1) {
             x++
@@ -28,16 +30,17 @@ function startVal() {
         } else {
             x = 0
         }
-        // Slideshow.style.backgroundImage = `url(${imgSrc[x].src})`;
+
         update()
     }, 5000);
 }
 startVal()
 
 
-function clearval() {
+function pauseAndRestartTimeout() {
     clearInterval(setval)
-    setTimeout(() => {
+    clearTimeout(restartval)
+   restartval= setTimeout(() => {
         startVal()
     }, 2000);
 }
@@ -54,8 +57,11 @@ function update() {
 
 
 arrowBox.addEventListener("click", function (e) {
+    const right=e.target.classList.contains("arrowRight");
+    const left =e.target.classList.contains("leftArrow");
+
     if (!e.target.classList.contains("arrowRight") && !e.target.classList.contains("leftArrow")) { return }
-    if (e.target.classList.contains("arrowRight")) {
+    if (right) {
         if (x < imgSrc.length - 1) {
             x++
 
@@ -64,8 +70,7 @@ arrowBox.addEventListener("click", function (e) {
         }
     }
 
-
-    if (e.target.classList.contains("leftArrow")) {
+    if (left) {
         if (x > 0) {
             x--
 
@@ -75,10 +80,8 @@ arrowBox.addEventListener("click", function (e) {
     }
 
     update()
-    clearval()
+    pauseAndRestartTimeout()
 })
-
-
 
 
 
@@ -99,7 +102,7 @@ buttonSlider.forEach((i) => {
         if (findId) {
             // console.log(imgSrc[x]);
             update()
-            clearval()
+            pauseAndRestartTimeout()
             i.classList.add("checked")
             
         }
