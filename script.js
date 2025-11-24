@@ -21,6 +21,13 @@ let setval
 let restartval
 
 
+
+imgSrc.forEach((i) => {
+    buttonSliderBox.innerHTML += `<button item="${i.id}"  class="" ></button>`
+})
+
+
+
 function startVal() {
     clearInterval(setval)
     setval = setInterval(() => {
@@ -53,6 +60,17 @@ function update() {
     length.innerHTML = imgSrc.length;
     CaptionText.innerHTML=imgSrc[x].Caption;
     Slideshow.style.backgroundImage = `url(${imgSrc[x].src})`;
+
+
+    let btnSlider=buttonSliderBox.querySelectorAll("button");
+    btnSlider.forEach(function (btn ,index){
+        btn.classList.remove("checked")
+        if(index==x){
+            btn.classList.add("checked")
+        }
+    })
+    
+    
 }
 
 
@@ -86,36 +104,58 @@ arrowBox.addEventListener("click", function (e) {
 
 
 
-imgSrc.forEach((i) => {
-    buttonSliderBox.innerHTML += `<button atr="${i.id}"  class="" ></button>`
-})
 
-let buttonSlider = buttonSliderBox.querySelectorAll("button");
-buttonSlider.forEach((i) => {
-    i.addEventListener("click", () => {
-        buttonSlider.forEach(btn => btn.classList.remove("checked"))
 
-        let atr = i.getAttribute("atr");
-        atr = Number(atr);
-        let findId = imgSrc.find((f) => f.id === atr);
-        x = atr-1;
-        if (findId) {
-            // console.log(imgSrc[x]);
-            update()
-            pauseAndRestartTimeout()
-            i.classList.add("checked")
+// روش اول گذاشتن ایونت روی هر دکمه --------------------------- 
+
+// let buttonSlider = buttonSliderBox.querySelectorAll("button");
+// buttonSlider.forEach((i) => {
+//     i.addEventListener("click", () => {
+//         buttonSlider.forEach(btn => btn.classList.remove("checked"))
+
+//         let item = i.getAttribute("item");
+//         item = Number(item);
+//         let findId = imgSrc.find((f) => f.id === item);
+//         x = item-1;
+//         if (findId) {
+//             // console.log(imgSrc[x]);
+//             update()
+//             pauseAndRestartTimeout()
+//             i.classList.add("checked")
             
+//         }
+
+//     })
+// })
+
+
+
+// روش دوم گداشتن ایونت روی والد -------------------------------------------
+buttonSliderBox.addEventListener("click", function(e) {
+       const carent=e.currentTarget;
+        let buttonSlider = e.target.querySelectorAll("button");
+        if(!buttonSlider){return}   
+        console.log(e.target);
+
+        if (buttonSlider) {
+            buttonSlider.forEach(btn => btn.classList.remove("checked"))
+
+            let item = e.target.getAttribute("item");
+            item = Number(item);
+            let findId = imgSrc.find((f) => f.id === item);
+            x = item-1;
+            if (findId) {
+                // console.log(imgSrc[x]);
+                update()
+                pauseAndRestartTimeout()
+                e.target.classList.add("checked")
+                
+            }
         }
 
     })
-})
 
-
-
-
-
-
-
+//  نکته : روش دوم بهتره چون نیازی نیست روی هر دکمه یک ایونت ایجاد شود
 
 
 
