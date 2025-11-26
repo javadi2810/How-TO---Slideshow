@@ -15,15 +15,15 @@ let counter = document.querySelector(".counter");
 let counting = document.querySelector(".counting");
 let length = document.querySelector(".length");
 let buttonSliderBox = document.querySelector(".buttonSliderBox");
-let CaptionText=document.querySelector(".CaptionText");
+let CaptionText = document.querySelector(".CaptionText");
 let x = 0;
 let setval
 let restartval
 
 
 
-imgSrc.forEach((i) => {
-    buttonSliderBox.innerHTML += `<button item="${i.id}"  class="" ></button>`
+imgSrc.forEach((i, index) => {
+    buttonSliderBox.innerHTML += `<button item="${index}"  class="button" ></button>`
 })
 
 
@@ -47,7 +47,7 @@ startVal()
 function pauseAndRestartTimeout() {
     clearInterval(setval)
     clearTimeout(restartval)
-   restartval= setTimeout(() => {
+    restartval = setTimeout(() => {
         startVal()
     }, 2000);
 }
@@ -56,29 +56,29 @@ function pauseAndRestartTimeout() {
 
 function update() {
     counter.style.display = "block";
-    counting.innerHTML = imgSrc[x].id;
+    counting.innerHTML = x + 1;
     length.innerHTML = imgSrc.length;
-    CaptionText.innerHTML=imgSrc[x].Caption;
+    CaptionText.innerHTML = imgSrc[x].Caption;
     Slideshow.style.backgroundImage = `url(${imgSrc[x].src})`;
 
 
-    let btnSlider=buttonSliderBox.querySelectorAll("button");
-    btnSlider.forEach(function (btn ,index){
+    let btnSlider = buttonSliderBox.querySelectorAll("button");
+    btnSlider.forEach(function (btn, index) {
         btn.classList.remove("checked")
-        if(index==x){
+        if (index == x) {
             btn.classList.add("checked")
         }
     })
-    
-    
-}
+
+
+}update()
 
 
 arrowBox.addEventListener("click", function (e) {
-    const right=e.target.classList.contains("arrowRight");
-    const left =e.target.classList.contains("leftArrow");
+    const right = e.target.classList.contains("arrowRight");
+    const left = e.target.classList.contains("leftArrow");
 
-    if (!e.target.classList.contains("arrowRight") && !e.target.classList.contains("leftArrow")) { return }
+    if (!right && !left) { return }
     if (right) {
         if (x < imgSrc.length - 1) {
             x++
@@ -122,7 +122,7 @@ arrowBox.addEventListener("click", function (e) {
 //             update()
 //             pauseAndRestartTimeout()
 //             i.classList.add("checked")
-            
+
 //         }
 
 //     })
@@ -131,33 +131,46 @@ arrowBox.addEventListener("click", function (e) {
 
 
 // روش دوم گداشتن ایونت روی والد -------------------------------------------
-buttonSliderBox.addEventListener("click", function(e) {
-       const carent=e.currentTarget;
-        let buttonSlider = e.target.querySelectorAll("button");
-        if(!buttonSlider){return}   
-        console.log(e.target);
+// buttonSliderBox.addEventListener("click", function(e) {
+//        const carent=e.currentTarget;
+//         let buttonSlider = e.target.querySelectorAll("button");
+//         if(!buttonSlider){return}   
+//         console.log(e.target);
 
-        if (buttonSlider) {
-            buttonSlider.forEach(btn => btn.classList.remove("checked"))
+//         if (buttonSlider) {
+//             buttonSlider.forEach(btn => btn.classList.remove("checked"))
 
-            let item = e.target.getAttribute("item");
-            item = Number(item);
-            let findId = imgSrc.find((f) => f.id === item);
-            x = item-1;
-            if (findId) {
-                // console.log(imgSrc[x]);
-                update()
-                pauseAndRestartTimeout()
-                e.target.classList.add("checked")
-                
-            }
-        }
+//             let item = e.target.getAttribute("item");
+//             item = Number(item);
+//             let findId = imgSrc.find((f) => f.id === item);
+//             x = item-1;
+//             if (findId) {
+//                 // console.log(imgSrc[x]);
+//                 update()
+//                 pauseAndRestartTimeout()
+//                 e.target.classList.add("checked")
 
-    })
+//             }
+//         }
+
+//     })
 
 //  نکته : روش دوم بهتره چون نیازی نیست روی هر دکمه یک ایونت ایجاد شود
 
+buttonSliderBox.addEventListener("click", function (e) {
+    let buttonSlider = e.target.classList.contains("button");
+    if (!buttonSlider) { return }
 
+    let item = e.target.getAttribute("item");
+
+    if(!item){return}
+
+    item = Number(item)
+    x = item;
+
+    update()
+    pauseAndRestartTimeout()
+})
 
 
 
